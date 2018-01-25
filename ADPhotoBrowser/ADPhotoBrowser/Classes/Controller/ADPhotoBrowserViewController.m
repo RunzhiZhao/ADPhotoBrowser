@@ -6,11 +6,11 @@
 //
 
 #import "ADPhotoBrowserViewController.h"
-#import "ADPhotoBrowserCollectionViewCell.h"
+#import "ADPhotoBrowserCell.h"
 #import "UIView+ADExtension.h"
 
 @interface ADPhotoBrowserViewController ()
-<UICollectionViewDelegate, UICollectionViewDataSource>
+<UICollectionViewDelegate, UICollectionViewDataSource, ADPhotoBrowserCellDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -18,12 +18,12 @@
 
 @implementation ADPhotoBrowserViewController
 
-NSString * const ADPhotoBrowserCollectionViewCellID = @"ADPhotoBrowserCollectionViewCell";
+NSString * const ADPhotoBrowserCellID = @"ADPhotoBrowserCell";
 
 #pragma mark - Init
-
 + (instancetype)photoBrowserViewWithDelegate:(id<ADPhotoBrowserViewControllerDelegate>)delegate {
     ADPhotoBrowserViewController *vc = [[ADPhotoBrowserViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     vc.delegate = delegate;
     return vc;
 }
@@ -33,6 +33,7 @@ NSString * const ADPhotoBrowserCollectionViewCellID = @"ADPhotoBrowserCollection
     [super viewDidLoad];
     
     [self configViews];
+    
 }
 
 
@@ -42,18 +43,33 @@ NSString * const ADPhotoBrowserCollectionViewCellID = @"ADPhotoBrowserCollection
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ADPhotoBrowserCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ADPhotoBrowserCollectionViewCellID forIndexPath:indexPath];
-    cell.imageURLString = self.imageURLStringArray[indexPath.item];
+    ADPhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ADPhotoBrowserCellID forIndexPath:indexPath];
+    cell.delegate = self;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    ((ADPhotoBrowserCell *)cell).imageURLString = self.imageURLStringArray[indexPath.item];
+}
+
+
+#pragma mark - ADPhotoBrowserCellDelegate
+
+- (void)cellShouldPerformSingleTap:(ADPhotoBrowserCell *)cell {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 #pragma mark - Private
 
 - (void)configViews {
+    self.view.backgroundColor = [UIColor blackColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.collectionView];
 }
+
+
+#pragma mark - Action
 
 
 #pragma mark - getter
@@ -65,12 +81,13 @@ NSString * const ADPhotoBrowserCollectionViewCellID = @"ADPhotoBrowserCollection
         flowLayout.itemSize = CGSizeMake(self.view.ad_width, self.view.ad_height);
         flowLayout.minimumLineSpacing = CGFLOAT_MIN;
         UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+        collectionView.backgroundColor = [UIColor clearColor];
         collectionView.alwaysBounceVertical = NO;
         collectionView.pagingEnabled = YES;
         collectionView.delegate = self;
         collectionView.dataSource = self;
         
-        [collectionView registerClass:[ADPhotoBrowserCollectionViewCell class] forCellWithReuseIdentifier:ADPhotoBrowserCollectionViewCellID];
+        [collectionView registerClass:[ADPhotoBrowserCell class] forCellWithReuseIdentifier:ADPhotoBrowserCellID];
         
         _collectionView = collectionView;
     }
