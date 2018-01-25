@@ -24,4 +24,6 @@
 
 @property (nonatomic, strong) NSArray *imageURLStringArray;
 
+@property (nonatomic, assign) NSUInteger currentIndex;
+
 @end
