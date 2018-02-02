@@ -26,4 +26,6 @@
 
 @property (nonatomic, assign) NSUInteger currentIndex;
 
+@property (nonatomic, strong) UIImageView *originImageView;
+
 @end

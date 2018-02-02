@@ -14,7 +14,8 @@
 
 - (void)shouldChangeAlpha:(CGFloat)alpha animate:(BOOL)animate;
 
-- (void)photoBrowserDidDownDragToDismiss;
+- (void)photoBrowserDidEndDragMovingView:(UIImageView *)moveImageView dismiss:(BOOL)dismiss;
+
 
 @end
 
@@ -27,7 +28,5 @@
 @property (nonatomic, strong) UIImageView *mainImageView;
 
 @property (nonatomic, weak) id <ADPhotoBrowserCellDelegate> delegate;
-
-@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 
 @end

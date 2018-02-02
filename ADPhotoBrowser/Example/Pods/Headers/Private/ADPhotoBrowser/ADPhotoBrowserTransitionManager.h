@@ -1,0 +1,1 @@
+../../../../../ADPhotoBrowser/Classes/Utils/ADPhotoBrowserTransitionManager/ADPhotoBrowserTransitionManager.h

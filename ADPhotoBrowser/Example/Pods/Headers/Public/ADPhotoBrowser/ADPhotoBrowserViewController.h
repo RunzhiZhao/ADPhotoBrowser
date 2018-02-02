@@ -1,1 +1,1 @@
-../../../../../ADPhotoBrowser/Classes/Controller/ADPhotoBrowserViewController.h
+../../../../../ADPhotoBrowser/Classes/Module/Controller/ADPhotoBrowserViewController.h
