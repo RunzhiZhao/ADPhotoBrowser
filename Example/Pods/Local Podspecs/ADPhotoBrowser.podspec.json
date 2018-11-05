@@ -1,7 +1,7 @@
 {
   "name": "ADPhotoBrowser",
-  "version": "0.2.0",
-  "summary": "A photo browser.",
+  "version": "1.0.0",
+  "summary": "ADPhotoBrowser",
   "description": "TODO: Add long description of the pod here.\n一个清纯的图片浏览器",
   "homepage": "https://github.com/RunzhiZhao/ADPhotoBrowser",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "git@github.com:RunzhiZhao/ADPhotoBrowser.git",
-    "tag": "0.2.0"
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "7.0"
@@ -21,7 +21,7 @@
   "source_files": "ADPhotoBrowser/Classes/**/**/*.{h,m}",
   "dependencies": {
     "SDWebImage": [
-      "4.2.3"
+
     ]
   }
 }

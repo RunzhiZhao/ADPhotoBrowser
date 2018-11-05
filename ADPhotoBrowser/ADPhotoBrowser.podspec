@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '7.0'
 
-  s.source_files = 'ADPhotoBrowser/Classes/**/**/*.{h,m}'
+  s.source_files = 'ADPhotoBrowser/Classes/**/*.{h,m}'
   
   # s.resource_bundles = {
   #   'ADPhotoBrowser' => ['ADPhotoBrowser/Assets/*.png']

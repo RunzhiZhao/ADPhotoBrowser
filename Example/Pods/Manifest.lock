@@ -1,9 +1,9 @@
 PODS:
-  - ADPhotoBrowser (0.2.0):
-    - SDWebImage (= 4.2.3)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
+  - ADPhotoBrowser (1.0.0):
+    - SDWebImage
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
   - ADPhotoBrowser (from `../`)
@@ -17,8 +17,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ADPhotoBrowser: 69b4a7c8ea8af63378d4f2f7ba844aedb7d72096
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+  ADPhotoBrowser: d080776384b70a2339662a65efa5f9f70cc7e1e6
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
 PODFILE CHECKSUM: eee885df072ec1859709f9fc8c6b31eaaea362c3
 
