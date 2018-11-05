@@ -11,7 +11,7 @@
 
 @protocol ADPhotoBrowserViewControllerDelegate <NSObject>
 
-- (void)didSomething;
+- (void)photoBrowserViewController:(ADPhotoBrowserViewController *)controller shouldPerformLongPressAtImageView:(UIImageView *)imageView;
 
 @end
 

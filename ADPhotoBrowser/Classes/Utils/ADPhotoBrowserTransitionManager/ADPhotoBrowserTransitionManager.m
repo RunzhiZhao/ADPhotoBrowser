@@ -88,7 +88,7 @@
     }];
 
     // 2.如果是点击图片视图，给复位动画
-    if (self.originView && self.originView.image) {
+    if (!CGRectEqualToRect(self.originFrame, CGRectZero) && self.originView && self.originView.image) {
         UIView *animateView = [self.originView snapshotViewAfterScreenUpdates:NO];
         animateView.frame = [fromVC.view convertRect:self.originView.frame toView:containerView];
         [containerView addSubview:animateView];
@@ -96,13 +96,11 @@
         
         // 执行动画
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:1.0f/[self transitionDuration:transitionContext] options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            fromVC.view.alpha = 0;
             animateView.frame = self.originFrame;
         } completion:^(BOOL finished) {
             [animateView removeFromSuperview];
             [transitionContext completeTransition:YES];
         }];
-        
     } else {
         [transitionContext completeTransition:YES];
     }

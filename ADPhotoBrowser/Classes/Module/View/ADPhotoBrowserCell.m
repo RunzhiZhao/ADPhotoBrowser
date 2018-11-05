@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
 
 @property (nonatomic, strong) UIImageView *moveImageView;
 
@@ -55,7 +56,7 @@ static CGPoint originLocation;  // 移动手势初始点
     // 添加手势
     [self addGestureRecognizer:self.singleTap];
     [self addGestureRecognizer:self.doubleTap];
-
+    [self addGestureRecognizer:self.longPress];
 }
 
 - (void)resetViews {
@@ -238,6 +239,16 @@ static CGPoint originLocation;  // 移动手势初始点
     }
 }
 
+// 长按手势事件
+- (void)longPressAction:(UILongPressGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        // 传递给controller
+        if (self.delegate && [self.delegate respondsToSelector:@selector(cellShouldPerformLongPress:)]) {
+            [self.delegate cellShouldPerformLongPress:self];
+        }
+    }
+}
+
 
 #pragma mark - setter
 - (void)setImageURLString:(NSString *)imageURLString {
@@ -266,6 +277,13 @@ static CGPoint originLocation;  // 移动手势初始点
         _doubleTap.numberOfTapsRequired = 2;
     }
     return _doubleTap;
+}
+
+- (UILongPressGestureRecognizer *)longPress {
+    if (!_longPress) {
+        _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+    }
+    return _longPress;
 }
 
 - (UIScrollView *)contentScrollView {

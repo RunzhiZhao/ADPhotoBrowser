@@ -21,7 +21,7 @@
 
 @implementation ADPhotoBrowserViewController
 
-NSString * const ADPhotoBrowserCellID = @"ADPhotoBrowserCell";
+static NSString * const ADPhotoBrowserCellID = @"ADPhotoBrowserCell";
 
 #pragma mark - Init
 + (instancetype)photoBrowserViewWithDelegate:(id<ADPhotoBrowserViewControllerDelegate>)delegate {
@@ -48,8 +48,9 @@ NSString * const ADPhotoBrowserCellID = @"ADPhotoBrowserCell";
 }
 
 - (void)dealloc {
-    NSLog(@"%@ dealloc", self.class);
+    NSLog(@"ADPhotoBrowserViewController  - dealloc");
 }
+
 
 #pragma mark - UICollectionView delegate & dataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -73,6 +74,13 @@ NSString * const ADPhotoBrowserCellID = @"ADPhotoBrowserCell";
     // 拿到当前图片的frame和image, 进行转场动画
     self.originImageView = cell.mainImageView;
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)cellShouldPerformLongPress:(ADPhotoBrowserCell *)cell {
+    // 长按弹出选项栏
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photoBrowserViewController:shouldPerformLongPressAtImageView:)]) {
+        [self.delegate photoBrowserViewController:self shouldPerformLongPressAtImageView:cell.mainImageView];
+    }
 }
 
 // 拖拽进度回调，更改透明度
@@ -146,6 +154,11 @@ NSString * const ADPhotoBrowserCellID = @"ADPhotoBrowserCell";
     _originImageView = originImageView;
     self.transitionManager.originView = originImageView;
 }
+
+- (void)setImageURLStringArray:(NSArray *)imageURLStringArray {
+    _imageURLStringArray = [imageURLStringArray copy];
+}
+
 
 #pragma mark - getter
 

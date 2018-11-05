@@ -12,6 +12,8 @@
 
 - (void)cellShouldPerformSingleTap:(ADPhotoBrowserCell *)cell;
 
+- (void)cellShouldPerformLongPress:(ADPhotoBrowserCell *)cell;
+
 - (void)shouldChangeAlpha:(CGFloat)alpha animate:(BOOL)animate;
 
 - (void)photoBrowserDidEndDragMovingView:(UIImageView *)moveImageView dismiss:(BOOL)dismiss;
