@@ -46,12 +46,13 @@
     ADPhotoBrowserViewController *browserVC = [ADPhotoBrowserViewController photoBrowserViewWithDelegate:self];
     browserVC.imageURLStringArray = self.images;
     browserVC.currentIndex = 0;
+    browserVC.delegate = self;
     //    }
     return browserVC;
 }
 
-- (void)didSomething {
-    
+- (void)photoBrowserViewController:(ADPhotoBrowserViewController *)controller shouldPerformLongPressAtImageView:(UIImageView *)imageView {
+    NSLog(@"long press");
 }
 
 #pragma mark - getter
