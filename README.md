@@ -22,7 +22,7 @@ pod 'ADPhotoBrowser'
 
 ## Author
 
-Runzhi.Zhao, 17620023326@163.com
+Runzhi.Zhao, 852356753@qq.com
 
 ## License
 
